@@ -15,6 +15,7 @@ enum {
 #define MIRYOKU_X(LAYER, STRING) U_TD_U_##LAYER,
 MIRYOKU_LAYER_LIST
 #undef MIRYOKU_X
+    CUSTOM_ENABLE_COMPOSITE_ACCENT_ENUM
 };
 
 void u_td_fn_boot(tap_dance_state_t *state, void *user_data) {
@@ -22,6 +23,9 @@ void u_td_fn_boot(tap_dance_state_t *state, void *user_data) {
     reset_keyboard();
   }
 }
+
+CUSTOM_ENABLE_COMPOSITE_ACCENT_FUNCTION(c_td_fn_grave, KC_GRV, 0x300)
+CUSTOM_ENABLE_COMPOSITE_ACCENT_FUNCTION(c_td_fn_acute, KC_QUOTE, 0x301)
 
 #define MIRYOKU_X(LAYER, STRING) \
 void u_td_fn_U_##LAYER(tap_dance_state_t *state, void *user_data) { \
@@ -37,6 +41,7 @@ tap_dance_action_t tap_dance_actions[] = {
 #define MIRYOKU_X(LAYER, STRING) [U_TD_U_##LAYER] = ACTION_TAP_DANCE_FN(u_td_fn_U_##LAYER),
 MIRYOKU_LAYER_LIST
 #undef MIRYOKU_X
+    CUSTOM_ENABLE_COMPOSITE_ACCENT_ACTION
 };
 
 
